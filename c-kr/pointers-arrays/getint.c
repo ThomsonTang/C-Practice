@@ -8,10 +8,23 @@
  * positive value if the input contains a valid number.
  */
 
+#include <stdio.h>
 #include <ctype.h>
+#include "getCh.h"
 
 int getch(void);
 void ungetch(int);
+
+main()
+{
+    printf("start execute%d\n", 2);
+    int pn[4];
+    pn[0] = 1;
+    pn[1] = 2;
+    int c = getint(pn);
+
+    printf("the result is: %c\n", c);
+}
 
 /* getint: get next integer from input into *pn. */
 int getint(int *pn)
@@ -27,8 +40,10 @@ int getint(int *pn)
     sign = (c == '-') ? -1 : 1;
     if (c == '+' || c == '-')
         c = getch();
-    for (*pn = 0; isdigit(c); c = getch())
+    for (*pn = 0; isdigit(c); c = getch()) {
+        printf("now c is:%c\n", c);
         *pn = 10 * *pn + (c - '0');
+    }
     *pn *= sign;
     if (c != EOF)
         ungetch(c);
