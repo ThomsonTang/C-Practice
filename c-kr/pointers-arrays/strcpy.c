@@ -3,6 +3,7 @@
 void a_strcpy(char *s, char *t);
 void p_strcpy(char *s, char *t);
 void ex_strcpy(char *s, char *t);
+void strcopy(char *s, char *t);
 
 main() 
 {
@@ -12,6 +13,7 @@ main()
 
     //a_strcpy(s, t);
     //p_strcpy(ps, t);
+    //ex_strcpy(ps, t);
     ex_strcpy(ps, t);
 
     printf("the content of s is: %s\n", ps);
@@ -41,5 +43,10 @@ void p_strcpy(char *s, char *t)
 void ex_strcpy(char *s, char *t)
 {
     while((*s++ = *t++) != '\0')
+        ;
+}
+
+void strcopy(char *d, char *s) {
+    while(*d++ = *s++)
         ;
 }
