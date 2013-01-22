@@ -3,6 +3,7 @@
 
 char * ReplaceAll( char *s, char old, char new );
 char * Replace( char *str, char *orig, char *rep );
+int GetIndexs( char *str, char *sub, int *index );
 
 int main() {
     //char s[100] = { '\0' };
@@ -17,7 +18,19 @@ int main() {
     //char *res = ReplaceAll( s, old, new );
     //printf( "the new string: %s\n", res );
 
-    puts( Replace( "ab cde fefdf :w", " ", "*" ) );
+    //puts( Replace( "ab#@cde#@fefdf#:w", "#@", "\n" ) );
+
+    char str[] = "abcdefcd";
+    char *sub = "cd";
+
+    int index[10];
+    int all = GetIndexs( str, sub, index );
+
+    int i;
+    for ( i = 0; i < all; i++ ) {
+        printf("%d\n", index[i]);
+    }
+    
     return 0;
 }
 
@@ -47,4 +60,18 @@ char * Replace( char *str, char *orig, char *rep ) {
    sprintf( buffer + ( p - str ), "%s%s", rep, p + strlen( orig ) );
 
    return Replace( buffer, orig, rep );
+}
+
+int GetIndexs( char *str, char *sub, int *index ) {
+    char *p;
+    char *s = str;
+    int i = 0;
+
+    while ( p = strstr( s, sub ) ) {
+        *index++ = p - str + 1;
+        s = p + strlen( sub );
+        i++;
+    }
+
+    return i;
 }
