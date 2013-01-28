@@ -15,8 +15,8 @@ void quickSort(char *v[], int left, int right) {
         }
     }
     swap(v, left, last);
-    qsort(v, left, last - 1);
-    qsort(v, last + 1, right);
+    quickSort(v, left, last - 1);
+    quickSort(v, last + 1, right);
 }
 
 void swap(char *v[], int i, int j) {
